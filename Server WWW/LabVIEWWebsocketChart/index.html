@@ -1,0 +1,161 @@
+<!doctype html>
+<head>
+	<link type="text/css" rel="stylesheet" href="js/Rickshaw/jquery-ui.css">
+	<link type="text/css" rel="stylesheet" href="js/Rickshaw/src/css/graph.css">
+	<link type="text/css" rel="stylesheet" href="js/Rickshaw/src/css/detail.css">
+	<link type="text/css" rel="stylesheet" href="js/Rickshaw/src/css/legend.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link type="text/css" rel="stylesheet" href="css/index.css?v=2">
+
+	<script src="js/Rickshaw/vendor/d3.v3.js"></script>
+	<script src="js/jquery.min_v1.4.2.js"></script>
+	<script src="js/websockets.js"></script>
+
+	<script src="js/Rickshaw/jquery.minv1.6.2.js"></script>
+	<script>
+		jQuery.noConflict();
+	</script>
+
+	<script src="js/Rickshaw/jquery-ui.min.js"></script>
+
+	<script src="js/Rickshaw/src/js/Rickshaw.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Class.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Compat.ClassList.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Renderer.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Renderer.Area.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Renderer.Line.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Renderer.Bar.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Renderer.ScatterPlot.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Renderer.Stack.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.RangeSlider.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.RangeSlider.Preview.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.HoverDetail.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Annotate.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Legend.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Axis.Time.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Toggle.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Order.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Highlight.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Smoother.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Fixtures.Time.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Fixtures.Time.Local.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Fixtures.Number.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Fixtures.RandomData.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Fixtures.Color.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Color.Palette.js"></script>
+	<script src="js/Rickshaw/src/js/Rickshaw.Graph.Axis.Y.js"></script>
+
+	<script src="js/extensions.js"></script>
+</head>
+
+<body>
+
+
+
+<!**********************************************************************************************************************************>
+<div id="wrapper">
+    <div id="container">
+    		<div id="chart_container">
+				<div id="chart"></div>
+				<div id="timeline"></div>
+				<div id="preview"></div>
+			</div>
+		<table>
+			<tr>
+				<td>
+					<div id="content">
+						<form id="side_panel">
+							<h1>LabVIEW Chart Example</h1>
+							<section><div id="legend"></div></section>
+							<section>
+								<div id="renderer_form" class="toggler">
+									<input type="radio" name="renderer" id="area" value="area" checked>
+									<label for="area">area</label>
+									<input type="radio" name="renderer" id="bar" value="bar">
+									<label for="bar">bar</label>
+									<input type="radio" name="renderer" id="line" value="line">
+									<label for="line">line</label>
+									<input type="radio" name="renderer" id="scatter" value="scatterplot">
+									<label for="scatter">scatter</label>
+								</div>
+							</section>
+							<section>
+								<div id="offset_form">
+									<label for="stack">
+										<input type="radio" name="offset" id="stack" value="zero" checked>
+										<span>stack</span>
+									</label>
+									<label for="stream">
+										<input type="radio" name="offset" id="stream" value="wiggle">
+										<span>stream</span>
+									</label>
+									<label for="pct">
+										<input type="radio" name="offset" id="pct" value="expand">
+										<span>pct</span>
+									</label>
+									<label for="value">
+										<input type="radio" name="offset" id="value" value="value">
+										<span>value</span>
+									</label>
+								</div>
+								<div id="interpolation_form">
+									<label for="cardinal">
+										<input type="radio" name="interpolation" id="cardinal" value="cardinal" checked>
+										<span>cardinal</span>
+									</label>
+									<label for="linear">
+										<input type="radio" name="interpolation" id="linear" value="linear">
+										<span>linear</span>
+									</label>
+									<label for="step">
+										<input type="radio" name="interpolation" id="step" value="step-after">
+										<span>step</span>
+									</label>
+								</div>
+							</section>
+							<section>
+								<h6>Smoothing</h6>
+								<div id="smoother"></div>
+							</section>
+							<section></section>
+						</form>
+					</div>
+				</td>
+				<td>
+					<h1>WebSockets Client</h1>
+					<div id="webled1box">
+						<button id="webled1">Web LED 1 : ON</button>
+					<div>
+					<div id="webled2box">
+						<button id="webled2">Web LED 2 : OFF</button>
+					<div>
+					<div id="sevled1box">
+						<button id="servled1btn">Toggle Server LED 1</button>
+						<button id="servled1">Server LED 1 : ON</button>
+					<div>
+					<div id="led2box">
+						<button id="servled2btn">Toggle Server LED 2</button>
+						<button id="servled2">Server LED 2 : ON</button>
+					<div>
+
+					<p id="examples">User Text : Server</p>
+					<input id="servusertext" type="text" />
+					<label>User Text (Server Output)</label>
+
+					<p id="examples">User Text : Web</p>
+					<div id="box1">
+						<input id="webusertext" type="text" />
+						<label>User Text (Web Input)</label>
+					<div>
+					<div id="box2">
+						<input id="webusertextfeedback" type="text" />
+						<label>User Text (Server Feedback)</label>
+					<div>
+				</td>
+			</tr>
+		</table>
+	
+	</div><!-- #container -->
+</div>
+</body>

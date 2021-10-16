@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script src="js/jquery.min_v1.4.2.js"></script>
+<script src="js/websockets.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<title>WebSockets Client</title>
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="container">
+	
+		<h1>WebSockets Client</h1>
+		<div id="webled1box">
+			<button id="webled1">Web LED 1 : ON</button>
+		<div>
+		<div id="webled2box">
+			<button id="webled2">Web LED 2 : OFF</button>
+		<div>
+		<div id="sevled1box">
+			<button id="servled1btn">Toggle Server LED 1</button>
+			<button id="servled1">Server LED 1 : ON</button>
+		<div>
+		<div id="led2box">
+			<button id="servled2btn">Toggle Server LED 2</button>
+			<button id="servled2">Server LED 2 : ON</button>
+		<div>
+
+		<p id="examples">User Text : Server</p>
+		<input id="servusertext" type="text" />
+		<label>User Text (Server Output)</label>
+
+		<p id="examples">User Text : Web</p>
+		<div id="box1">
+			<input id="webusertext" type="text" />
+			<label>User Text (Web Input)</label>
+		<div>
+		<div id="box2">
+			<input id="webusertextfeedback" type="text" />
+			<label>User Text (Server Feedback)</label>
+		<div>
+
+
+		<p id="logger">Logger:</p>
+
+		<div id="chatLog">
+
+        </div><!-- #chatLog -->
+        <p id="examples">e.g. try 'hi', 'name', 'age', 'today'</p>
+
+		<button id="disconnect">Disconnect</button>
+
+	</div><!-- #container -->
+</div>
+</body>
+</html>​
